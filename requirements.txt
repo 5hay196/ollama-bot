@@ -1,0 +1,11 @@
+# Reticulum Network Stack
+rns>=0.7.0
+
+# LXMFy bot framework
+lxmfy>=1.2.1
+
+# HTTP client for Ollama API
+requests>=2.31.0
+
+# Environment variable loading
+python-dotenv>=1.0.0
