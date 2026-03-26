@@ -1,1 +1,26 @@
-chore: add systemd service unit file
+[Unit]
+Description=Ollama Bot - Private Mesh AI Assistant
+After=network.target rnsd.service ollama.service
+Requires=rnsd.service ollama.service
+
+[Service]
+# Recommended: Create a dedicated user for the bot
+# User=pi
+# Group=pi
+
+Type=simple
+WorkingDirectory=/home/pi/ollama-bot
+ExecStart=/usr/bin/python3 /home/pi/ollama-bot/bot.py
+Restart=on-failure
+RestartSec=10
+
+# Load environment variables from the .env file in the working directory
+EnvironmentFile=/home/pi/ollama-bot/.env
+
+# Standard logging to journalctl
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ollama-bot
+
+[Install]
+WantedBy=multi-user.target
